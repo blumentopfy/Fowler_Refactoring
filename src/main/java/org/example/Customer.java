@@ -24,7 +24,12 @@ class Customer {
         for (Rental rental : rentals) {
             frequentRenterPoints += rental.getFrequentRenterPoints();
             //show figures for this rental
-            result.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(String.valueOf(amount)).append("\n");
+            result.append("\t")
+                    .append(rental.getMovie().getTitle())
+                    .append("\t").append("\t")
+                    .append(rental.getDaysRented())
+                    .append("\t").append(rental.getCharge())
+                    .append("\n");
             totalAmount += rental.getCharge();
         }
         //add footer lines
