@@ -27,11 +27,7 @@ class Customer {
             Rental each = enum_rentals.nextElement();
             //determine amounts for each line
             thisAmount = amountFor(each);
-            // add frequent renter points
-            frequentRenterPoints ++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
-                frequentRenterPoints ++;
+            frequentRenterPoints += rental.getFrequentRenterPoints();
             //show figures for this rental
             result.append("\t").append(each.getMovie().getTitle()).append("\t").append("\t").append(each.getDaysRented()).append("\t").append(String.valueOf(thisAmount)).append("\n");
             totalAmount += thisAmount;
