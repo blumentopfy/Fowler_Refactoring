@@ -4,6 +4,6 @@ This project is done on following Chapter 1 of [Refactoring: Improving the Desig
 
 ## Useful IDE functions for refactoring
 
-Using the IDE Eclipse, there are several short cuts and functions, you can use for refactoring. The one I used the most in this project is:
+Using the IDE IntelliJ, there are several short cuts and functions, you can use for refactoring. The one I used the most in this project is:
 
 `ALT` + `SHIFT` + `R` => Rename variables, methods, classes or even packages
