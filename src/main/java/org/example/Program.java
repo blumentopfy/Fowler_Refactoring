@@ -14,7 +14,7 @@ public class Program
      */
     
     
-    public static void main(String args[]) 
+    public static void main(String[] args)
     {
         String result;
         Movie m1 = new Movie("movie1", 1);
