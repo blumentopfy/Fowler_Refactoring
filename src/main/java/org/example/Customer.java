@@ -4,8 +4,8 @@ import java.lang.*;
 import java.util.*;
 
 public class Customer {
-    private String name;
-    private Vector rentals = new Vector();
+    private final String name;
+    private final Vector rentals = new Vector();
     public Customer (String newname){
         name = newname;
     };
@@ -45,19 +45,23 @@ public class Customer {
     private double amountFor(Rental each) {
         double thisAmount = 0;
         switch (each.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (each.getDaysRented() > 2)
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (each.getDaysRented() > 3)
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
-                break;
+            case Movie.REGULAR -> {
+                if (each.getDaysRented() > 2){
+                    return 2 + (each.getDaysRented() - 2) * 1.5;
+                } else {
+                    return 2;
+                }
+            }
+            case Movie.NEW_RELEASE -> {
+                return each.getDaysRented() * 3;
+            }
+            case Movie.CHILDRENS -> {
+                if (each.getDaysRented() > 3) {
+                    return 1.5 +  (each.getDaysRented() - 3) * 1.5;
+                } else {
+                    return 1.5;
+                }
+            }
         }
         return thisAmount;
     }
