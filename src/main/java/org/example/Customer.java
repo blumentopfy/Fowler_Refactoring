@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Customer {
     private final String name;
-    private final Vector rentals = new Vector();
+    private final Vector<Rental> rentals = new Vector<Rental>();
     public Customer (String newname){
         name = newname;
     };
@@ -18,13 +18,13 @@ public class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();	    
+        Enumeration<Rental> enum_rentals = rentals.elements();
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
         while (enum_rentals.hasMoreElements()) {
             double thisAmount = 0;
-            Rental each = (Rental) enum_rentals.nextElement();
+            Rental each = enum_rentals.nextElement();
             //determine amounts for each line
             thisAmount = each.amountFor();
             // add frequent renter points
