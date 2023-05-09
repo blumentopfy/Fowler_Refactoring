@@ -5,12 +5,12 @@ import java.util.*;
 
 class Customer {
     private final String name;
-    private final Vector<Rental> rentals = new Vector<>();
+    private final List<Rental> rentals = new ArrayList<>();
     public Customer (String newname){
         name = newname;
     }
     public void addRental(Rental arg) {
-        rentals.addElement(arg);
+        rentals.add(arg);
     }
     public String getName (){
         return name;
@@ -18,22 +18,20 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration<Rental> enum_rentals = rentals.elements();
         StringBuilder result = new StringBuilder("Rental Record for " + this.getName() + "\n");
         result.append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n");
 
-        while (enum_rentals.hasMoreElements()) {
+        for (Rental rental : rentals) {
             double thisAmount;
-            Rental each = enum_rentals.nextElement();
             //determine amounts for each line
-            thisAmount = amountFor(each);
+            thisAmount = amountFor(rental);
             // add frequent renter points
             frequentRenterPoints ++;
             // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
+            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
                 frequentRenterPoints ++;
             //show figures for this rental
-            result.append("\t").append(each.getMovie().getTitle()).append("\t").append("\t").append(each.getDaysRented()).append("\t").append(thisAmount).append("\n");
+            result.append("\t").append(rental.getMovie().getTitle()).append("\t").append("\t").append(rental.getDaysRented()).append("\t").append(thisAmount).append("\n");
             totalAmount += thisAmount;
         }
         //add footer lines
